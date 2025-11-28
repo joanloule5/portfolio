@@ -1,0 +1,1001 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LOULE KOUANG JOUAN - Analyste SOC</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #00ff88;
+            --secondary: #0088ff;
+            --dark: #0a0a0a;
+            --darker: #050505;
+            --light: #ffffff;
+            --gray: #1a1a1a;
+            --glow: 0 0 20px rgba(0, 255, 136, 0.3);
+        }
+
+        body {
+            font-family: 'Courier New', monospace;
+            background: var(--darker);
+            color: var(--light);
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(0, 136, 255, 0.05) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(0, 255, 136, 0.05) 0%, transparent 20%);
+        }
+
+        /* Header Cyber */
+        .cyber-header {
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--primary);
+            box-shadow: var(--glow);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cyber-logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary);
+            text-shadow: var(--glow);
+        }
+
+        .cyber-nav {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .cyber-nav a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .cyber-nav a:hover {
+            color: var(--primary);
+        }
+
+        .cyber-nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        .cyber-nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Section Hero Cyber */
+        .cyber-hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 120px 2rem 80px;
+            position: relative;
+            background: linear-gradient(45deg, var(--dark) 0%, var(--darker) 100%);
+        }
+
+        .cyber-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                linear-gradient(90deg, transparent 98%, var(--primary) 100%),
+                linear-gradient(0deg, transparent 98%, var(--primary) 100%);
+            background-size: 50px 50px;
+            opacity: 0.1;
+            animation: gridMove 20s linear infinite;
+        }
+
+        @keyframes gridMove {
+            0% { background-position: 0 0; }
+            100% { background-position: 50px 50px; }
+        }
+
+        .cyber-photo-container {
+            width: 220px;
+            height: 220px;
+            margin: 0 auto 3rem;
+            border-radius: 50%;
+            border: 3px solid var(--primary);
+            padding: 5px;
+            position: relative;
+            box-shadow: var(--glow);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .cyber-photo-container::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            border: 2px solid var(--secondary);
+            border-radius: 50%;
+            animation: rotate 10s linear infinite;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .profile-photo {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            filter: grayscale(0.3) contrast(1.1);
+        }
+
+        .cyber-title {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px rgba(0, 255, 136, 0.5);
+        }
+
+        .cyber-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            color: var(--light);
+            opacity: 0.9;
+        }
+
+        .cyber-badge {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background: rgba(0, 255, 136, 0.1);
+            border: 1px solid var(--primary);
+            border-radius: 25px;
+            color: var(--primary);
+            font-size: 0.9rem;
+            margin: 0.5rem;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 10px rgba(0, 255, 136, 0.3); }
+            50% { box-shadow: 0 0 20px rgba(0, 255, 136, 0.6); }
+        }
+
+        /* Sections */
+        .cyber-section {
+            padding: 100px 2rem;
+            position: relative;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 4rem;
+            color: var(--primary);
+            text-shadow: var(--glow);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: var(--primary);
+            box-shadow: var(--glow);
+        }
+
+        /* Compétences SOC */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .cyber-skill-card {
+            background: rgba(26, 26, 26, 0.8);
+            border: 1px solid var(--gray);
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cyber-skill-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 136, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .cyber-skill-card:hover::before {
+            left: 100%;
+        }
+
+        .cyber-skill-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+            box-shadow: var(--glow);
+        }
+
+        .skill-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        /* NOUVEAU : Flip Cards pour Projets */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .flip-card {
+            background: transparent;
+            perspective: 1000px;
+            height: 300px;
+        }
+
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
+        }
+
+        .flip-card:hover .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .flip-card-front, .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            border-radius: 10px;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .flip-card-front {
+            background: rgba(26, 26, 26, 0.9);
+            border: 2px solid var(--primary);
+            box-shadow: var(--glow);
+            color: var(--primary);
+        }
+
+        .flip-card-back {
+            background: linear-gradient(45deg, var(--dark), var(--gray));
+            border: 2px solid var(--secondary);
+            color: var(--light);
+            transform: rotateY(180deg);
+            text-align: left;
+        }
+
+        .project-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            justify-content: center;
+        }
+
+        .tech-tag {
+            background: rgba(0, 136, 255, 0.2);
+            border: 1px solid var(--secondary);
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            color: var(--secondary);
+        }
+
+        /* NOUVEAU : Section Centres d'Intérêt */
+        .interests-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .interest-card {
+            background: rgba(26, 26, 26, 0.8);
+            border: 1px solid var(--gray);
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .interest-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+            box-shadow: var(--glow);
+        }
+
+        .interest-photo {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 1rem;
+            border: 2px solid var(--primary);
+        }
+
+        .interest-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        /* NOUVEAU : Section Formation */
+        .timeline {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background: var(--primary);
+            box-shadow: var(--glow);
+        }
+
+        .timeline-item {
+            margin-bottom: 3rem;
+            position: relative;
+            width: 45%;
+        }
+
+        .timeline-item:nth-child(odd) {
+            left: 0;
+        }
+
+        .timeline-item:nth-child(even) {
+            left: 55%;
+        }
+
+        .timeline-content {
+            background: rgba(26, 26, 26, 0.8);
+            border: 1px solid var(--gray);
+            border-radius: 10px;
+            padding: 1.5rem;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-content:hover {
+            border-color: var(--primary);
+            box-shadow: var(--glow);
+        }
+
+        .timeline-content::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            width: 20px;
+            height: 2px;
+            background: var(--primary);
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content::before {
+            right: -20px;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content::before {
+            left: -20px;
+        }
+
+        .timeline-date {
+            color: var(--primary);
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        /* Contact */
+        .contact-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: rgba(26, 26, 26, 0.8);
+            border: 1px solid var(--gray);
+            border-radius: 10px;
+            padding: 3rem;
+            box-shadow: var(--glow);
+        }
+
+        .contact-info {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .contact-email {
+            color: var(--primary);
+            font-size: 1.2rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .contact-email:hover {
+            text-shadow: var(--glow);
+        }
+
+        .cyber-form .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .cyber-form label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        .cyber-form input,
+        .cyber-form textarea {
+            width: 100%;
+            padding: 12px;
+            background: rgba(10, 10, 10, 0.8);
+            border: 1px solid var(--gray);
+            border-radius: 5px;
+            color: var(--light);
+            font-family: 'Courier New', monospace;
+            transition: all 0.3s ease;
+        }
+
+        .cyber-form input:focus,
+        .cyber-form textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: var(--glow);
+        }
+
+        .cyber-btn {
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            color: var(--dark);
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .cyber-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--glow);
+        }
+
+        /* Footer */
+        .cyber-footer {
+            background: var(--dark);
+            border-top: 1px solid var(--primary);
+            padding: 2rem;
+            text-align: center;
+            box-shadow: var(--glow);
+        }
+
+        /* Animations au scroll */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .slide-in-left {
+            opacity: 0;
+            transform: translateX(-100px);
+            transition: all 0.8s ease;
+        }
+
+        .slide-in-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .slide-in-right {
+            opacity: 0;
+            transform: translateX(100px);
+            transition: all 0.8s ease;
+        }
+
+        .slide-in-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Cyber -->
+    <header class="cyber-header">
+        <nav class="nav-container">
+            <div class="cyber-logo">SOC_ANALYST</div>
+            <div class="cyber-nav">
+                <a href="#accueil">Accueil</a>
+                <a href="#apropos">À Propos</a>
+                <a href="#competences">Compétences</a>
+                <a href="#formation">Formation</a>
+                <a href="#projets">Projets</a>
+                <a href="#interets">Centres d'Intérêt</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Section Hero Cyber -->
+    <section id="accueil" class="cyber-hero">
+        <div class="container">
+            <div class="cyber-photo-container">
+                <!-- REMPLACEZ PAR VOTRE PHOTO -->
+                <img src="votre-photo.jpg" alt="LOULE KOUANG JOUAN" class="profile-photo">
+            </div>
+            <h1 class="cyber-title">LOULE KOUANG JOUAN</h1>
+            <p class="cyber-subtitle">Analyste SOC Junior | Cybersécurité</p>
+            <div>
+                <span class="cyber-badge">Détection des Menaces</span>
+                <span class="cyber-badge">Analyse des Incidents</span>
+                <span class="cyber-badge">Réponse aux Incidents</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section À Propos -->
+    <section id="apropos" class="cyber-section">
+        <h2 class="section-title">À Propos</h2>
+        <div class="container" style="max-width: 800px; margin: 0 auto; text-align: center;">
+            <div class="fade-in">
+                <p style="font-size: 1.2rem; line-height: 1.8; margin-bottom: 2rem;">
+                    Passionné par la cybersécurité et la protection des systèmes d'information, je suis spécialisé dans 
+                    la surveillance proactive des menaces et l'analyse des incidents de sécurité. Mon objectif est de 
+                    contribuer à la sécurisation des infrastructures en détectant et neutralisant les cybermenaces.
+                </p>
+                <div class="skills-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
+                    <div class="cyber-skill-card">
+                        <i class="fas fa-shield-alt skill-icon"></i>
+                        <h3>Surveillance 24/7</h3>
+                    </div>
+                    <div class="cyber-skill-card">
+                        <i class="fas fa-search skill-icon"></i>
+                        <h3>Investigation</h3>
+                    </div>
+                    <div class="cyber-skill-card">
+                        <i class="fas fa-bug skill-icon"></i>
+                        <h3>Analyse Malware</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Compétences -->
+    <section id="competences" class="cyber-section" style="background: rgba(10, 10, 10, 0.5);">
+        <h2 class="section-title">Compétences SOC</h2>
+        <div class="skills-grid">
+            <div class="cyber-skill-card slide-in-left">
+                <i class="fas fa-terminal skill-icon"></i>
+                <h3>SIEM & Log Analysis</h3>
+                <p>QRadar, Splunk, Elastic Stack</p>
+                <p>Corrélation d'événements et analyse des logs</p>
+            </div>
+            <div class="cyber-skill-card fade-in">
+                <i class="fas fa-network-wired skill-icon"></i>
+                <h3>Réseau & Protocoles</h3>
+                <p>Analyse TCP/IP, DNS, HTTP/S</p>
+                <p>Wireshark, Tcpdump</p>
+            </div>
+            <div class="cyber-skill-card slide-in-right">
+                <i class="fas fa-virus skill-icon"></i>
+                <h3>Malware Analysis</h3>
+                <p>Analyse statique et dynamique</p>
+                <p>Sandboxing, Reverse Engineering</p>
+            </div>
+            <div class="cyber-skill-card slide-in-left">
+                <i class="fas fa-tools skill-icon"></i>
+                <h3>Outils SOC</h3>
+                <p>MDE, CrowdStrike, Nessus</p>
+                <p>Playbooks et procédures</p>
+            </div>
+            <div class="cyber-skill-card fade-in">
+                <i class="fas fa-code skill-icon"></i>
+                <h3>Scripting</h3>
+                <p>Python, PowerShell, Bash</p>
+                <p>Automatisation des tâches</p>
+            </div>
+            <div class="cyber-skill-card slide-in-right">
+                <i class="fas fa-user-secret skill-icon"></i>
+                <h3>Threat Intelligence</h3>
+                <p>OSINT, IOC, TTPs</p>
+                <p>Veille cyber</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- NOUVELLE SECTION : Formation -->
+    <section id="formation" class="cyber-section">
+        <h2 class="section-title">Formation</h2>
+        <div class="timeline">
+            <div class="timeline-item fade-in">
+                <div class="timeline-content">
+                    <div class="timeline-date">2025</div>
+                    <h3>Bachelor 2 Tronc commun</h3>
+                    <p>Keyce Informatique & IA, Cameroun</p>
+                </div>
+            </div>
+            <div class="timeline-item fade-in">
+                <div class="timeline-content">
+                    <div class="timeline-date">2024</div>
+                    <h3>Bachelor 1 Tronc commun</h3>
+                    <p>Keyce Informatique & IA, Cameroun</p>
+                </div>
+            </div>
+            <div class="timeline-item fade-in">
+                <div class="timeline-content">
+                    <div class="timeline-date">2023</div>
+                    <h3>Baccalauréat Scientifique</h3>
+                    <p>Collège Bilingue LAVAL – Douala, CMR</p>
+                </div>
+            </div>
+            <div class="timeline-item fade-in">
+                <div class="timeline-content">
+                    <div class="timeline-date">2021</div>
+                    <h3>BEPC Scientifique</h3>
+                    <p>Collège Bilingue LAVAL – Douala, Cameroun</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Projets SOC avec Flip Cards -->
+    <section id="projets" class="cyber-section" style="background: rgba(10, 10, 10, 0.5);">
+        <h2 class="section-title">Projets SOC</h2>
+        <div class="projects-grid">
+            <!-- Projet 1 -->
+            <div class="flip-card fade-in">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <i class="fas fa-search project-icon"></i>
+                        <h3>Mise en place SIEM</h3>
+                        <p>Cliquez pour voir les détails</p>
+                    </div>
+                    <div class="flip-card-back">
+                        <h3>Mise en place SIEM</h3>
+                        <p>Déploiement et configuration d'une solution SIEM avec création de règles de corrélation pour détecter les activités suspectes.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Wazuh</span>
+                            <span class="tech-tag">Elasticsearch</span>
+                            <span class="tech-tag">Kibana</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Projet 2 -->
+            <div class="flip-card fade-in">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <i class="fas fa-book project-icon"></i>
+                        <h3>Playbook Réponse Incidents</h3>
+                        <p>Cliquez pour voir les détails</p>
+                    </div>
+                    <div class="flip-card-back">
+                        <h3>Playbook Réponse Incidents</h3>
+                        <p>Création de playbooks détaillés pour la réponse aux incidents de sécurité (phishing, malware, intrusion).</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Documentation</span>
+                            <span class="tech-tag">Procédures</span>
+                            <span class="tech-tag">Best Practices</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Projet 3 -->
+            <div class="flip-card fade-in">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <i class="fas fa-chart-bar project-icon"></i>
+                        <h3>Dashboard de Monitoring</h3>
+                        <p>Cliquez pour voir les détails</p>
+                    </div>
+                    <div class="flip-card-back">
+                        <h3>Dashboard de Monitoring</h3>
+                        <p>Développement de dashboards de monitoring sécurité avec alertes temps réel et métriques KPIs.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Grafana</span>
+                            <span class="tech-tag">Prometheus</span>
+                            <span class="tech-tag">Python</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Projet 4 -->
+            <div class="flip-card fade-in">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <i class="fas fa-robot project-icon"></i>
+                        <h3>Automatisation SOC</h3>
+                        <p>Cliquez pour voir les détails</p>
+                    </div>
+                    <div class="flip-card-back">
+                        <h3>Automatisation SOC</h3>
+                        <p>Scripts Python pour automatiser l'analyse des logs et la recherche d'IOCs dans les bases de données.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">API REST</span>
+                            <span class="tech-tag">SQL</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Projet 5 -->
+            <div class="flip-card fade-in">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <i class="fas fa-fish project-icon"></i>
+                        <h3>Analyse Campagne Phishing</h3>
+                        <p>Cliquez pour voir les détails</p>
+                    </div>
+                    <div class="flip-card-back">
+                        <h3>Analyse Campagne Phishing</h3>
+                        <p>Investigation complète d'une campagne de phishing avec analyse des emails, URLs et pièces jointes.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">OSINT</span>
+                            <span class="tech-tag">Malware Analysis</span>
+                            <span class="tech-tag">YARA</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Projet 6 -->
+            <div class="flip-card fade-in">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <i class="fas fa-binoculars project-icon"></i>
+                        <h3>Threat Hunting</h3>
+                        <p>Cliquez pour voir les détails</p>
+                    </div>
+                    <div class="flip-card-back">
+                        <h3>Threat Hunting</h3>
+                        <p>Recherche proactive de menaces avancées via l'analyse comportementale et la corrélation d'événements.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">MITRE ATT&CK</span>
+                            <span class="tech-tag">Sigma Rules</span>
+                            <span class="tech-tag">YARA</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NOUVELLE SECTION : Centres d'Intérêt -->
+    <section id="interets" class="cyber-section">
+        <h2 class="section-title">Centres d'Intérêt</h2>
+        <div class="interests-grid">
+            <div class="interest-card fade-in">
+                <i class="fas fa-gamepad interest-icon"></i>
+                <h3>Gaming</h3>
+                <p>Passionné par les jeux vidéo et l'esport</p>
+                <!-- REMPLACEZ PAR VOTRE PHOTO GAMING -->
+                <img src="gaming.jpg" alt="Gaming" class="interest-photo">
+            </div>
+            <div class="interest-card fade-in">
+                <i class="fas fa-laptop-code interest-icon"></i>
+                <h3>Technologie</h3>
+                <p>Veille technologique et innovations</p>
+                <!-- REMPLACEZ PAR VOTRE PHOTO TECHNOLOGIE -->
+                <img src="tech.jpg" alt="Technologie" class="interest-photo">
+            </div>
+            <div class="interest-card fade-in">
+                <i class="fas fa-music interest-icon"></i>
+                <h3>Musique</h3>
+                <p>Découverte musicale et concerts</p>
+                <!-- REMPLACEZ PAR VOTRE PHOTO MUSIQUE -->
+                <img src="musique.jpg" alt="Musique" class="interest-photo">
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Contact -->
+    <section id="contact" class="cyber-section" style="background: rgba(10, 10, 10, 0.5);">
+        <h2 class="section-title">Contact</h2>
+        <div class="contact-container fade-in">
+            <div class="contact-info">
+                <p>Disponible pour des opportunités en cybersécurité</p>
+                <a href="mailto:joanloule5@gmail.com" class="contact-email">joanloule5@gmail.com</a>
+            </div>
+            <form class="cyber-form">
+                <div class="form-group">
+                    <label for="name">Nom</label>
+                    <input type="text" id="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="subject">Sujet</label>
+                    <input type="text" id="subject" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="cyber-btn">Envoyer le Message</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="cyber-footer">
+        <div class="container">
+            <p>&copy; 2024 LOULE KOUANG JOUAN - Analyste SOC</p>
+            <p style="margin-top: 1rem; opacity: 0.7;">Protéger aujourd'hui pour sécuriser demain</p>
+        </div>
+    </footer>
+
+    <script>
+        // Animations au scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Effet de frappe pour le titre
+        const title = document.querySelector('.cyber-title');
+        const text = title.textContent;
+        title.textContent = '';
+        let i = 0;
+        
+        function typeWriter() {
+            if (i < text.length) {
+                title.textContent += text.charAt(i);
+                i++;
+                setTimeout(typeWriter, 100);
+            }
+        }
+        
+        setTimeout(typeWriter, 1000);
+
+        // Formulaire de contact
+        document.querySelector('.cyber-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Message envoyé ! Je vous répondrai dans les plus brefs délais.');
+            this.reset();
+        });
+
+        // Effet de particules pour le background
+        function createParticle() {
+            const particle = document.createElement('div');
+            particle.style.position = 'fixed';
+            particle.style.width = '2px';
+            particle.style.height = '2px';
+            particle.style.background = 'var(--primary)';
+            particle.style.borderRadius = '50%';
+            particle.style.left = Math.random() * 100 + 'vw';
+            particle.style.top = '0';
+            particle.style.pointerEvents = 'none';
+            particle.style.opacity = '0.3';
+            particle.style.animation = `fall ${Math.random() * 3 + 2}s linear forwards`;
+            document.body.appendChild(particle);
+            
+            setTimeout(() => {
+                particle.remove();
+            }, 5000);
+        }
+
+        // Créer des particules régulièrement
+        setInterval(createParticle, 100);
+        
+        // Ajouter l'animation de chute
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fall {
+                to {
+                    transform: translateY(100vh) rotate(360deg);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
